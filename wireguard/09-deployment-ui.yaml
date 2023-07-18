@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wireguard-ui-deployment
+  namespace: wireguard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wireguard-ui
+  template:
+    metadata:
+      labels:
+        app: wireguard-ui
+    spec:
+      hostNetwork: true
+      containers:
+        - name: wireguard-ui
+          image: ngoduykhanh/wireguard-ui:latest
+          ports:
+            - containerPort: 5000
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          env:
+            - name: WGUI_USERNAME
+              value: "admin"
+            - name: WGUI_PASSWORD
+              value: "admin"
+            - name: WGUI_MANAGE_START
+              value: "true"
+            - name: WGUI_MANAGE_RESTART
+              value: "true"
+            - name: WGUI_SERVER_LISTEN_PORT
+              value: "31820"
+            - name: WGUI_SERVER_POST_UP_SCRIPT
+              value: "iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ${NETWORK_INTERFACE} -j MASQUERADE"
+            - name: WGUI_SERVER_POST_DOWN_SCRIPT
+              value: "iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ${NETWORK_INTERFACE} -j MASQUERADE"
+          volumeMounts:
+            - name: wg-config
+              mountPath: /etc/wireguard
+            - name: wg-db
+              mountPath: /app/db
+      volumes:
+        - name: wg-config
+          persistentVolumeClaim:
+            claimName: wireguard-config-pvc
+        - name: wg-db
+          persistentVolumeClaim:
+            claimName: wireguard-ui-db-pvc

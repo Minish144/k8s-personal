@@ -15,12 +15,10 @@ spec:
       labels:
         app: wireguard
     spec:
+      hostNetwork: true
       containers:
       - name: wireguard
         image: ghcr.io/linuxserver/wireguard
-        envFrom:
-        - configMapRef:
-            name: wireguard-configmap
         securityContext:
           capabilities:
             add:
@@ -33,20 +31,21 @@ spec:
           - name: host-volumes
             mountPath: /lib/modules
         ports:
-        - containerPort: 51820
+        - containerPort: 31820
           protocol: UDP
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "100m"
+            memory: 64Mi
+            cpu: 0.1
           limits:
-            memory: "256Mi"
-            cpu: "200m"
+            memory: 256Mi
+            cpu: 0.3
       volumes:
         - name: wg-config
           persistentVolumeClaim:
-            claimName: pvc-wireguard
+            claimName: wireguard-config-pvc
         - name: host-volumes
           hostPath:
             path: /lib/modules
             type: Directory
+

@@ -8,9 +8,10 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: ${SERVERPORT}
-    nodePort: ${SERVERPORT}
+  - port: 31820
+    nodePort: 31820
     protocol: UDP
-    targetPort: ${SERVERPORT}
+    targetPort: 31820
   selector:
     app: wireguard
+
