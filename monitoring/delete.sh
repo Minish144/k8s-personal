@@ -1,2 +1,1 @@
-kubectl delete -f manifests/
-kubectl delete -f manifests/setup
+kubectl delete --ignore-not-found=true -f manifests/ -f manifests/setup
