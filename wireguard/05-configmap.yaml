@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wireguard-configmap
+  namespace: wireguard
+data:
+  PUID: "1000"
+  PGID: "1000"
+  INTERNAL_SUBNET: "10.13.13.0"
+  TZ: "${TIMEZONE}"
+  SERVERPORT: "${SERVERPORT}"
+  PEERDNS: "${PEER_DNS}"
