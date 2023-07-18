@@ -1,0 +1,10 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: gh-runner
+  namespace: actions-runner-system
+spec:
+  replicas: 3
+  template:
+    spec:
+      ${TYPE}: ${SOURCE}
