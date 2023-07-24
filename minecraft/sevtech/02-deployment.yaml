@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sevtech
-          image: elmonitoboy/sevtech-docker:3.2.3
+          image: resistance/sevtech-ages:3.0.8
           ports:
             - containerPort: 25565
           resources:
