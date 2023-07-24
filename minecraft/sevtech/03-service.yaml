@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sevtech-service
+  namespace: minecraft
+spec:
+  selector:
+    app: sevtech
+  ports:
+  - protocol: TCP
+    port: 25565
+    targetPort: 25565
+    nodePort: 25565
+  type: NodePort

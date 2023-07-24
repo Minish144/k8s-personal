@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sevtech-deployment
+  namespace: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sevtech
+  template:
+    metadata:
+      labels:
+        app: sevtech
+    spec:
+      containers:
+        - name: sevtech
+          image: p0rt23/sevtech:3.1.1
+          ports:
+            - containerPort: 25565
+          resources:
+            requests:
+              memory: 4Gi
+              cpu: 1
+            limits:
+              memory: 8Gi
+              cpu: 2.5
+          volumeMounts:
+            - name: world-volume
+              mountPath: /opt/sevtech/world
+            - name: backups-volume
+              mountPath: /opt/sevtech/backups
+      volumes:
+        - name: world-volume
+          persistentVolumeClaim:
+            claimName: sevtech-world-pvc
+        - name: backups-volume
+          persistentVolumeClaim:
+            claimName: sevtech-backups-pvc
