@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sevtech
-          image: p0rt23/sevtech:3.1.1
+          image: p0rt23/sevtech:3.0.8
           ports:
             - containerPort: 25565
           resources:
