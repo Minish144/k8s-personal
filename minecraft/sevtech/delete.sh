@@ -1,1 +1,1 @@
-kubectl apply -f .
+kubectl delete -f .
