@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sevtech
-          image: p0rt23/sevtech:3.0.8
+          image: elmonitoboy/sevtech-docker:3.2.3
           ports:
             - containerPort: 25565
           resources:
@@ -27,9 +27,9 @@ spec:
               cpu: 2.5
           volumeMounts:
             - name: world-volume
-              mountPath: /opt/sevtech/world
+              mountPath: /minecraft/world
             - name: backups-volume
-              mountPath: /opt/sevtech/backups
+              mountPath: /minecraft/backups
       volumes:
         - name: world-volume
           persistentVolumeClaim:
