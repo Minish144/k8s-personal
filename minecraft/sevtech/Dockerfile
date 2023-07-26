@@ -1,18 +1,17 @@
 FROM openjdk:8u171-jdk-alpine3.8
 
-RUN apk --no-cache add curl unzip
-
-RUN curl --silent --fail --show-error --location https://minecraft.curseforge.com/projects/sevtech-ages/files/3570046/download --output modpack.zip
-RUN unzip modpack.zip -d /minecraft
-RUN cd /minecraft
-RUN chmod +x Install.sh ServerStart.sh
-RUN ./Install.sh
-RUN echo "eula=true" > eula.txt
-RUN mkdir serverconfig
-RUN mv server.properties serverconfig/
-RUN { for f in server.properties whitelist.json ops.json banned-ips.json banned-players.json; do ln -s "serverconfig/$f"; done; }
-RUN mkdir state
-RUN { for f in usercache.json usernamecache.json; do ln -s "state/$f"; done; }
+RUN apk --no-cache add curl unzip \
+  && wget -O modpack.zip https://media.forgecdn.net/files/3570/46/SevTech_Ages_Server_3.2.3.zip \
+  && unzip modpack.zip -d /minecraft \
+  && cd /minecraft \
+  && chmod +x Install.sh ServerStart.sh \
+  && ./Install.sh \
+  && echo "eula=true" > eula.txt \
+  && mkdir serverconfig \
+  && mv server.properties serverconfig/ \
+  && { for f in server.properties whitelist.json ops.json banned-ips.json banned-players.json; do ln -s "serverconfig/$f"; done; } \
+  && mkdir state \
+  && { for f in usercache.json usernamecache.json; do ln -s "state/$f"; done; }
 
 FROM openjdk:8u171-jdk-alpine3.8
 
