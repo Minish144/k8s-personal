@@ -30,6 +30,8 @@ spec:
               mountPath: /minecraft/world
             - name: backups-volume
               mountPath: /minecraft/backups
+            - name: cfg-volume
+              mountPath: /minecraft/serverconfig
       volumes:
         - name: world-volume
           persistentVolumeClaim:
@@ -37,3 +39,6 @@ spec:
         - name: backups-volume
           persistentVolumeClaim:
             claimName: sevtech-backups-pvc
+        - name: cfg-volume
+          persistentVolumeClaim:
+            claimName: sevtech-cfg-pvc

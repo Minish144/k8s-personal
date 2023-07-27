@@ -59,3 +59,30 @@ spec:
   resources:
     requests:
       storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sevtech-cfg-pv
+  namespace: minecraft
+spec:
+  storageClassName: sevtech-storage-class
+  capacity:
+    storage: 200Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/sevtech-cfg
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sevtech-cfg-pvc
+  namespace: minecraft
+spec:
+  storageClassName: sevtech-storage-class
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Mi
