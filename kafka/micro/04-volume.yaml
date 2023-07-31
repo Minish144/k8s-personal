@@ -1,18 +1,9 @@
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: kafka-storage-class
-  namespace: kafka
-provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
----
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: kafka-pv-1
   namespace: kafka
 spec:
-  storageClassName: kafka-storage-class
   capacity:
     storage: 10Gi
   accessModes:
@@ -26,7 +17,6 @@ metadata:
   name: kafka-pv-2
   namespace: kafka
 spec:
-  storageClassName: kafka-storage-class
   capacity:
     storage: 10Gi
   accessModes:
