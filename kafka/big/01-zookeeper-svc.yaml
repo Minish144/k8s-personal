@@ -8,10 +8,13 @@ metadata:
 spec:
   ports:
   - port: 2888
+    targetPort: 2888
     name: server
   - port: 3888
+    targetPort: 3888
     name: leader-election
   clusterIP: None
+  type: NodePort
   selector:
     app: zk
 ---
@@ -25,6 +28,8 @@ metadata:
 spec:
   ports:
   - port: 2181
+    targetPort: 2181
     name: client
+  type: NodePort
   selector:
     app: zk
