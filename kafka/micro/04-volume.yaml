@@ -33,31 +33,4 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /mnt/kafka-2
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: kafka-pv-3
-  namespace: kafka
-spec:
-  storageClassName: kafka-storage-class
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /mnt/kafka-3
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: kafka-pv-4
-  namespace: kafka
-spec:
-  storageClassName: kafka-storage-class
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /mnt/kafka-4
+
