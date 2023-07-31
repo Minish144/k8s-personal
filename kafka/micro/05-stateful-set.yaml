@@ -160,6 +160,7 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: datadir
+      namespace: kafka
     spec:
       accessModes:
         - ReadWriteOnce
