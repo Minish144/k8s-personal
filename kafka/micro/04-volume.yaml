@@ -14,9 +14,9 @@ metadata:
 spec:
   storageClassName: kafka-storage-class
   capacity:
-    storage: 30Gi
+    storage: 50Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   hostPath:
     path: /mnt/kafka
 ---
@@ -28,7 +28,7 @@ metadata:
 spec:
   storageClassName: kafka-storage-class
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
