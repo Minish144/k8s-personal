@@ -9,6 +9,9 @@ spec:
   updateStrategy:
     type: RollingUpdate
   podManagementPolicy: Parallel
+  selector:
+    matchLabels:
+      app: zk
   template:
     metadata:
       labels:

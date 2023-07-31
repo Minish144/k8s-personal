@@ -9,6 +9,9 @@ spec:
   podManagementPolicy: Parallel
   updateStrategy:
     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: app
   template:
     metadata:
       labels:
