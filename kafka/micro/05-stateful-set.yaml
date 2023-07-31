@@ -163,7 +163,6 @@ spec:
     spec:
       accessModes:
         - ReadWriteOnce
-      storageClassName: kafka-storage-class
       resources:
         requests:
           storage: 10Gi
