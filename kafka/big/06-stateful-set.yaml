@@ -161,7 +161,9 @@ spec:
   - metadata:
       name: datadir
     spec:
-      accessModes: [ "ReadWriteOnce" ]
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: kafka-storage-class
       resources:
         requests:
           storage: 10Gi
