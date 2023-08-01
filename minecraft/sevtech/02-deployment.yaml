@@ -24,7 +24,7 @@ spec:
               cpu: 1
             limits:
               memory: 8Gi
-              cpu: 2.5
+              cpu: 4
           env:
             - name: MIN_RAM
               value: 4096M
