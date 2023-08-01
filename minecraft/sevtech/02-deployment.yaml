@@ -25,6 +25,11 @@ spec:
             limits:
               memory: 8Gi
               cpu: 2.5
+          env:
+            - name: MIN_RAM
+              value: 4096M
+            - name: MAX_RAM
+              value: 8192M
           volumeMounts:
             - name: world-volume
               mountPath: /minecraft/world
