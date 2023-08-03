@@ -9,7 +9,8 @@ RUN apk --no-cache add curl unzip \
   && echo "eula=true" > eula.txt \
   && mkdir serverconfig \
   && mv server.properties serverconfig/ \
-  && { for f in server.properties whitelist.json ops.json banned-ips.json banned-players.json; do ln -s "serverconfig/$f"; done; } \
+  && mv settings.sh serverconfig/ \
+  && { for f in server.properties whitelist.json ops.json banned-ips.json banned-players.json settings.sh; do ln -s "serverconfig/$f"; done; } \
   && mkdir state \
   && { for f in usercache.json usernamecache.json; do ln -s "state/$f"; done; }
 
