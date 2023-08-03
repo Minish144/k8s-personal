@@ -23,7 +23,7 @@ spec:
               memory: 4Gi
               cpu: 1
             limits:
-              memory: 8Gi
+              memory: 10Gi
               cpu: 4
           env:
             - name: MIN_RAM
