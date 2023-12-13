@@ -1,4 +1,4 @@
-FROM golang:alpine3.19
+FROM ethereum/solc:0.6.4-alpine
 LABEL stage=builder
 
 RUN apk update && apk upgrade --no-cache
@@ -14,14 +14,6 @@ RUN chmod -v u+x /bsc/geth
 RUN wget   $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
 RUN unzip mainnet.zip
 
-FROM golang:alpine3.19
-COPY --from=0 /bsc /bsc
-
-# p2p
-EXPOSE 30311
-
-# rpc
-EXPOSE 8045
-EXPOSE 8046
+EXPOSE 8545 8546 30311 30311/udp
 
 ENTRYPOINT ["/bsc/geth", "--config", "/bsc/config.toml", "--datadir", "/bsc/node"]
