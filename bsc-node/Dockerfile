@@ -1,7 +1,7 @@
 FROM golang:alpine3.19
 
 RUN apk update
-RUN apk add --no-cache wget curl
+RUN apk add --no-cache wget curl grep
 
 RUN mkdir -p /bsc
 WORKDIR /bsc
