@@ -1,4 +1,5 @@
 FROM golang:alpine3.19
+LABEL stage=builder
 
 RUN apk update && apk upgrade --no-cache
 RUN apk add vim iproute2 wget gcc git g++ sudo net-tools curl screen unzip
@@ -12,5 +13,8 @@ RUN chmod -v u+x /bsc/geth
 
 RUN wget   $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
 RUN unzip mainnet.zip
+
+FROM golang:alpine3.19
+COPY --from=0 /bsc /bsc
 
 ENTRYPOINT ["/bsc/geth", "--config", "/bsc/config.toml", "--datadir", "/bsc/node"]
