@@ -1,7 +1,7 @@
 FROM golang:1.21.5-bullseye
 
-RUN apt update
-RUN apt install wget curl grep
+RUN apt -y update && apt -y upgrade
+RUN apt install -y man vim iproute2 xz-utils wget gcc git g++ sudo  inetutils-ping net-tools curl screen cron unzip liblz4-tool
 
 RUN mkdir -p /bsc
 WORKDIR /bsc
