@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+  namespace: bsc
+  labels:
+    app: node
+spec:
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+        - name: node
+          image: ghcr.io/minish144/bsc-full-node:latest
+          command:
+            - "/bsc/geth"
+          args:
+            - "--config=/bsc/config.toml"
+            - "--datadir=/bsc/node"
+            - "--cache=8000"
+            - "--rpc.allow-unprotected-txs"
+            - "--syncmode=full"
+            - "--tries-verify-mode=none"
+            - "--diffblock=5000"
+            - "--rpc.txfeecap=0"
+            - "--rpc.gascap=0"
+            - "--http"
+            - "--http.corsdomain='*'"
+            - "--pruneancient=true"
+            - "--history.transactions=0"
+            - "--db.engine=pebble"
+            - "--ws"
+            - "--ws.origins='*'"
+            - "--block-amount-reserved=1024"
+          resources:
+            requests:
+              cpu: 4
+              memory: 16Gi
+            limits:
+              cpu: 16
+              memory: 32Gi
+          ports:
+            - containerPort: 8045
+            - containerPort: 8046
+            - containerPort: 30311
+          volumeMounts:
+            - name: config
+              mountPath: /bsc/config.toml
+            - name: node
+              mountPath: /bsc/node
+          securityContext:
+            privileged: false
+            runAsNonRoot: false
+            runAsUser: 1000
+            runAsGroup: 1000
+      volumes:
+        - name: config
+          hostPath:
+            path: /dev/bigboy/bsc/config.toml
+            type: File
+        - name: node
+          hostPath:
+            path: /dev/bigboy/bsc/node
+            type: Directory
