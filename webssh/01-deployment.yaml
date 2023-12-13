@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webssh
+  labels:
+    app: webssh
+  namespace: webssh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webssh
+  template:
+    metadata:
+      labels:
+        app: webssh
+    spec:
+      containers:
+        - name: webssh
+          image: achaiah/alpine-webssh
+          ports:
+            - containerPort: 8080
