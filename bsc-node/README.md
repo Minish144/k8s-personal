@@ -3,7 +3,7 @@
 docker build -t bsc .
 ```
 
-2. Run
+2. Run container
 ```bash
 docker run \
     --name bsc-node \
