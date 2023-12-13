@@ -33,4 +33,4 @@ jobs:
         with:
           context: ./bsc-node/
           push: true
-          tags: ghcr.io/minish144/bsc-full-node
+          tags: ghcr.io/minish144/bsc-full-node:${{ github.sha }}
