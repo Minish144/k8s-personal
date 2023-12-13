@@ -1,7 +1,7 @@
 FROM golang:alpine3.19
 
 RUN apk update
-RUN apk add --no-cache wget
+RUN apk add --no-cache wget curl
 
 RUN mkdir -p /bsc
 WORKDIR /bsc
@@ -9,6 +9,8 @@ WORKDIR /bsc
 RUN 'wget $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep geth_linux |cut -d\" -f4)'
 RUN mv geth_linux geth
 RUN chmod -v u+x geth
+
+RUN touch /bsc/node/config.toml /bsc/node/genesis.json
 
 RUN mkdir -p bsc/node
 
