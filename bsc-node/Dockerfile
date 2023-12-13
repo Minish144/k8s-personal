@@ -1,7 +1,7 @@
-FROM golang:alpine3.19
+FROM golang:1.21.5-bullseye
 
-RUN apk update
-RUN apk add --no-cache wget curl grep
+RUN apt update
+RUN apt install --no-cache wget curl grep
 
 RUN mkdir -p /bsc
 WORKDIR /bsc
