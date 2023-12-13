@@ -17,4 +17,11 @@ RUN unzip mainnet.zip
 FROM golang:alpine3.19
 COPY --from=0 /bsc /bsc
 
+# p2p
+EXPOSE 30311
+
+# rpc
+EXPOSE 8045
+EXPOSE 8046
+
 ENTRYPOINT ["/bsc/geth", "--config", "/bsc/config.toml", "--datadir", "/bsc/node"]

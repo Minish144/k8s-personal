@@ -22,26 +22,35 @@ spec:
       containers:
         - name: node
           image: ghcr.io/minish144/bsc-full-node:latest
-          command:
-            - "/bsc/geth"
+          imagePullPolicy: Always
           args:
-            - "--config=/bsc/config.toml"
-            - "--datadir=/bsc/node"
-            - "--cache=8000"
-            - "--rpc.allow-unprotected-txs"
-            - "--syncmode=full"
-            - "--tries-verify-mode=none"
-            - "--diffblock=5000"
-            - "--rpc.txfeecap=0"
-            - "--rpc.gascap=0"
-            - "--http"
-            - "--http.corsdomain='*'"
-            - "--pruneancient=true"
-            - "--history.transactions=0"
-            - "--db.engine=pebble"
-            - "--ws"
-            - "--ws.origins='*'"
-            - "--block-amount-reserved=1024"
+            - --cache
+            - "8000"
+            - --rpc.allow-unprotected-txs
+            - --syncmode
+            - "full"
+            - --tries-verify-mode
+            - "none"
+            - --diffblock
+            - "5000"
+            - --rpc.txfeecap
+            - "0"
+            - --rpc.gascap
+            - "0"
+            - --http
+            - --http.corsdomain
+            - "*"
+            - --pruneancient
+            - --history.transactions
+            - "0"
+            - --db.engine
+            - "pebble"
+            - --ws
+            - --ws.origins
+            - "*"
+            - --block-amount-reserved
+            - "1024"
+
           resources:
             requests:
               cpu: 4
