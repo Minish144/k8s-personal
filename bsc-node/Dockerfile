@@ -6,7 +6,7 @@ RUN apk add --no-cache wget
 RUN mkdir -p /bsc
 WORKDIR /bsc
 
-RUN wget $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep geth_linux |cut -d\" -f4)
+RUN 'wget $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep geth_linux |cut -d\" -f4)'
 RUN mv geth_linux geth
 RUN chmod -v u+x geth
 
