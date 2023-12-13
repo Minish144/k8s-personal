@@ -9,10 +9,10 @@ spec:
   selector:
     app: node
   ports:
-    - protocol: TCP
-      port: 30011
-      targetPort: 30011
-      nodePort: 30011
+    - protocol: UDP
+      port: 30311
+      targetPort: 30311
+      nodePort: 30311
   type: NodePort
 ---
 apiVersion: v1
@@ -27,8 +27,8 @@ spec:
     app: node
   ports:
     - protocol: TCP
-      port: 8045
-      targetPort: 8045
+      port: 8545
+      targetPort: 8545
       nodePort: 30045
   type: NodePort
 ---
@@ -44,7 +44,7 @@ spec:
     app: node
   ports:
     - protocol: TCP
-      port: 8046
-      targetPort: 8046
+      port: 8546
+      targetPort: 8546
       nodePort: 30046
   type: NodePort

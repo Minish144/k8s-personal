@@ -24,6 +24,10 @@ spec:
           image: ghcr.io/minish144/bsc-full-node:latest
           imagePullPolicy: Always
           args:
+            - --config
+            - "/bsc/config.toml"
+            - --datadir
+            - "/bsc/node"
             - --cache
             - "8000"
             - --rpc.allow-unprotected-txs
@@ -38,6 +42,8 @@ spec:
             - --rpc.gascap
             - "0"
             - --http
+            - --http.vhosts
+            - "*"
             - --http.corsdomain
             - "*"
             - --pruneancient
@@ -50,7 +56,16 @@ spec:
             - "*"
             - --block-amount-reserved
             - "1024"
-
+            - --http.addr
+            - "0.0.0.0"
+            - --http.port
+            - "8545"
+            - --ws.addr
+            - "0.0.0.0"
+            - --ws.port
+            - "8546"
+            - --discovery.port
+            - "30311"
           resources:
             requests:
               cpu: 4
@@ -59,12 +74,14 @@ spec:
               cpu: 16
               memory: 32Gi
           ports:
-            - containerPort: 8045
-            - containerPort: 8046
+            - containerPort: 8545
+            - containerPort: 8546
             - containerPort: 30311
           volumeMounts:
             - name: config
-              mountPath: /bsc/config.toml
+              mountPath: /bsc/config/config.toml
+            - name: genesis
+              mountPath: /bsc/config/genesis.json
             - name: node
               mountPath: /bsc/node
           securityContext:
@@ -76,6 +93,10 @@ spec:
         - name: config
           hostPath:
             path: /dev/bigboy/bsc/config.toml
+            type: File
+        - name: genesis
+          hostPath:
+            path: /dev/bigboy/bsc/genesis.json
             type: File
         - name: node
           hostPath:

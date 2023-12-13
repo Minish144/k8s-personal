@@ -16,4 +16,4 @@ RUN unzip mainnet.zip
 
 EXPOSE 8545 8546 30311 30311/udp
 
-ENTRYPOINT ["/bsc/geth", "--config", "/bsc/config.toml", "--datadir", "/bsc/node"]
+ENTRYPOINT ["/bsc/geth"]
