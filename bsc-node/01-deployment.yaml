@@ -79,9 +79,9 @@ spec:
             - containerPort: 30311
           volumeMounts:
             - name: config
-              mountPath: /bsc/config/config.toml
+              mountPath: /bsc/config.toml
             - name: genesis
-              mountPath: /bsc/config/genesis.json
+              mountPath: /bsc/genesis.json
             - name: node
               mountPath: /bsc/node
           securityContext:
