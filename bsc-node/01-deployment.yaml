@@ -14,6 +14,7 @@ spec:
       labels:
         app: node
     spec:
+      hostNetwork: true
       securityContext:
         runAsNonRoot: false
         runAsUser: 1000
@@ -75,8 +76,17 @@ spec:
               memory: 32Gi
           ports:
             - containerPort: 8545
+              hostPort: 8545
+              protocol: TCP
             - containerPort: 8546
+              hostPort: 8546
+              protocol: TCP
             - containerPort: 30311
+              hostPort: 30311
+              protocol: TCP
+            - containerPort: 30311
+              hostPort: 30311
+              protocol: UDP
           volumeMounts:
             - name: config
               mountPath: /bsc/config.toml
